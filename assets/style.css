@@ -209,5 +209,89 @@ article:hover {
 }
 
 main {
-  background-color: wheat;
+  background-image: url(imgs/whatsapp_bg.png);
+  display: grid;
+  grid-template-columns: repeat(36, 1fr);
+}
+
+header {
+  background-color: #ffffff;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #d0d4da;
+  justify-content: space-between;
+  grid-column: 1 / -1;
+}
+
+.foto-nome {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+main > header > .foto-nome > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.config {
+  display: flex;
+  width: 150px;
+}
+
+.config > img {
+  width: 30px;
+  height: 30px;
+}
+.juntinho {
+  display: flex;
+  width: 100px;
+}
+
+.mandar-message {
+  grid-column: 1 / 36;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  background-color: #ffffff;
+  height: 50px;
+  border-radius: 50px;
+
+  align-self: end;
+  margin: 20px;
+
+  position: fixed;
+}
+
+.mandar-message > img {
+  width: 30px;
+  height: 30px;
+
+  padding: 5px;
+}
+.plus {
+  display: flex;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mandar-message > input {
+  width: 1230px;
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+}
+
+.send {
+  width: 70px;
+  height: 70px;
 }
