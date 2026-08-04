@@ -14,7 +14,7 @@ img {
 .grid-template {
   height: 100dvh;
   display: grid;
-  grid-template-columns: 60px 1fr 2fr;
+  grid-template-columns: 60px 460px 1fr;
   grid-template-rows: 1fr;
 }
 
@@ -39,6 +39,7 @@ nav {
   border-radius: 100%;
   padding: 7px;
   width: 40px;
+  height: 40px;
 }
 
 .superior > img:hover {
@@ -49,10 +50,12 @@ section {
   background-color: white;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .section-superior {
-  height: 20%;
+  height: 25%;
+  width: 460px;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -60,7 +63,7 @@ section {
   padding-right: 20px;
   gap: 20px;
   background-color: white;
-  position: sticky;
+  position: fixed;
 }
 
 .titulo-settings {
@@ -88,6 +91,9 @@ section {
   padding: 7px;
   width: 40px;
 }
+.section-superior > .titulo-settings > .settings > img:hover {
+  background-color: #ebe7e5;
+}
 
 .section-superior > .inputado {
   width: 100%;
@@ -98,7 +104,7 @@ section {
 
 .section-superior > .inputado > input {
   height: 50px;
-  width: 85%;
+  width: 100%;
   border-radius: 50px;
   background-color: #f6f5f4;
   padding: 15px;
@@ -110,7 +116,7 @@ section {
   font-weight: 400;
 }
 
-input:focus {
+.section-superior > .inputado > input:focus {
   border: 2px solid #1caa61;
 }
 
@@ -118,12 +124,12 @@ input:focus {
   display: flex;
   justify-content: center;
   gap: 30px;
-  padding-right: 85px;
 }
 
 .botoes > .texto-botao {
   padding: 10px;
   border-radius: 50px;
+  white-space: normal;
 }
 
 .botoes > .texto-botao:hover {
@@ -133,9 +139,73 @@ input:focus {
 .active {
   background-color: #d9fdd3;
 }
-.section.inferior {
+.section-inferior {
   width: 100%;
-  height: 80%;
+  height: 75%;
+  margin-top: 230.5px;
+  overflow-y: scroll;
+}
+
+article {
+  height: 70px;
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "foto-perfil nome horas"
+    "foto-perfil mensagem pingo";
+
+  grid-template-columns: 60px 1fr 60px;
+  grid-template-rows: repeat(2, 1fr);
+
+  padding: 10px;
+}
+
+article:hover {
+  background-color: #f6f5f4;
+}
+
+.foto-perfil {
+  display: flex;
+  grid-area: foto-perfil;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.nome {
+  grid-area: nome;
+}
+
+.horas {
+  grid-area: horas;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #32a961;
+}
+
+.mensagem {
+  grid-area: mensagem;
+  white-space: nowrap; /* Garante que o texto fique em uma única linha */
+  overflow: hidden; /* Esconde o texto que passar do limite */
+  text-overflow: ellipsis; /* Adiciona os "..." automaticamente no final */
+}
+
+.pingo {
+  grid-area: pingo;
+
+  background-color: #32a961;
+  border-radius: 100%;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  color: white;
 }
 
 main {
