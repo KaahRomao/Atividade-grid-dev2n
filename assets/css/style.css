@@ -11,14 +11,21 @@ img {
   max-width: 100%;
 }
 
+html,
+body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
 .grid-template {
   height: 100dvh;
   display: grid;
   grid-template-columns: 60px 460px 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto 1fr;
 }
 
 nav {
+  grid-row: 1 / -1;
   background-color: #f7f5f2;
   display: flex;
   flex-direction: column;
@@ -35,7 +42,6 @@ nav {
 }
 
 .superior > img {
-  /* background-color: orange; */
   border-radius: 100%;
   padding: 7px;
   width: 40px;
@@ -47,6 +53,7 @@ nav {
 }
 
 section {
+  grid-row: 1 / -1;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -63,7 +70,9 @@ section {
   padding-right: 20px;
   gap: 20px;
   background-color: white;
-  position: fixed;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .titulo-settings {
@@ -86,7 +95,6 @@ section {
 }
 
 .section-superior > .titulo-settings > .settings > img {
-  /* background-color: orange; */
   border-radius: 100%;
   padding: 7px;
   width: 40px;
@@ -139,11 +147,11 @@ section {
 .active {
   background-color: #d9fdd3;
 }
+
 .section-inferior {
   width: 100%;
   height: 75%;
-  margin-top: 230.5px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 article {
@@ -188,14 +196,13 @@ article:hover {
 
 .mensagem {
   grid-area: mensagem;
-  white-space: nowrap; /* Garante que o texto fique em uma única linha */
-  overflow: hidden; /* Esconde o texto que passar do limite */
-  text-overflow: ellipsis; /* Adiciona os "..." automaticamente no final */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pingo {
   grid-area: pingo;
-
   background-color: #32a961;
   border-radius: 100%;
   height: 24px;
@@ -208,13 +215,12 @@ article:hover {
   color: white;
 }
 
-main {
-  background-image: url(imgs/whatsapp_bg.png);
-  display: grid;
-  grid-template-columns: repeat(36, 1fr);
-}
-
 header {
+  grid-column: 3;
+  grid-row: 1;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background-color: #ffffff;
   height: 100px;
   width: 100%;
@@ -223,7 +229,6 @@ header {
   padding: 15px;
   border: 1px solid #d0d4da;
   justify-content: space-between;
-  grid-column: 1 / -1;
 }
 
 .foto-nome {
@@ -232,8 +237,8 @@ header {
   align-items: center;
   gap: 20px;
 }
-
-main > header > .foto-nome > img {
+main > .foto-nome > img,
+header > .foto-nome > img {
   width: 70px;
   height: 70px;
   border-radius: 100%;
@@ -253,25 +258,36 @@ main > header > .foto-nome > img {
   width: 100px;
 }
 
+main {
+  grid-column: 3;
+  grid-row: 2;
+  background-image: url(../imgs/whatsapp_bg.png);
+  display: grid;
+  grid-template-columns: repeat(36, 1fr);
+  overflow-y: auto;
+  gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 100px;
+  height: 100%;
+  align-content: safe end;
+}
+
 .mandar-message {
   grid-column: 1 / 36;
-
   display: flex;
   align-items: center;
-
-  width: 100%;
+  width: 1350px;
   background-color: #ffffff;
   height: 50px;
   border-radius: 50px;
-
   align-self: end;
   margin: 20px;
+  position: absolute;
 }
 
 .mandar-message > img {
   width: 30px;
   height: 30px;
-
   padding: 5px;
 }
 .plus {
@@ -279,6 +295,18 @@ main > header > .foto-nome > img {
   width: 80px;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+}
+
+.fundo-falso {
+  grid-column: 1 / 36;
+  width: 1400px;
+  height: 80px;
+  align-self: end;
+  position: absolute;
+  background-image: url(../imgs/whatsapp_bg.png);
+  z-index: 1000;
+  bottom: 0;
 }
 
 .mandar-message > input {
@@ -292,4 +320,36 @@ main > header > .foto-nome > img {
 .send {
   width: 70px;
   height: 70px;
+}
+
+.mensagem-enviada,
+.mensagem-recebida {
+  border-radius: 5px;
+  padding: 6px 8px;
+  width: fit-content;
+  height: fit-content;
+  max-width: 100%;
+  display: flex;
+  gap: 15px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.mensagem-enviada {
+  grid-column: 15 / 35;
+  background-color: #d8f8d2;
+  margin-left: auto;
+}
+
+.mensagem-recebida {
+  grid-column: 3 / 23;
+  background-color: #ffffff;
+}
+
+.horas-mensagens {
+  font-size: 0.75rem;
+  color: #666;
+  white-space: nowrap;
+  margin-bottom: auto;
+  align-self: flex-end;
 }
