@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c6c6c6;
+  gap: 50px;
+}
+
+/* .elemento-pai {
+  width: 200px;
+  height: 100px;
+  background-color: rgb(223, 223, 223);
+  position: relative;
+}
+
+.triangulo {
+  /* width: 200px;
+  height: 200px;
+  background-color: black; */
+
+/* position: absolute; */
+/* border-left: 70px solid transparent; */
+/* border-right: 70px solid transparent; */
+/* border-bottom: 70px solid grey; */
+/* rotate: 180deg; */
+/* left: 30px; */
+/* }  */
+
+.folha {
+  width: 100px;
+  height: 180px;
+  background-color: white;
+  position: relative;
+}
+
+.dobra {
+  border-left: 20px solid #c6c6c6;
+  border-right: 20px solid rgb(230, 229, 229);
+  border-bottom: 20px solid rgb(230, 229, 229);
+  border-top: 20px solid #c6c6c6;
+  position: absolute;
+  rotate: 90deg;
+  right: 0;
+}
+
+.pai-pacman {
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  border-radius: 100%;
+  position: relative;
+}
+
+.pacman {
+  border-left: 102px solid transparent;
+  border-top: 50px solid transparent;
+  border-right: 113px solid #c6c6c6;
+  border-bottom: 50px solid transparent;
+  position: absolute;
+  left: 3px;
+  top: 51px;
+}
+
+.olho {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 100%;
+  position: absolute;
+  right: 62px;
+  top: 30px;
+}
+
+.bola-colorida {
+  border-top: 30px solid blue;
+  border-right: 30px solid red;
+  border-left: 30px solid green;
+  border-bottom: 30px solid yellow;
+  border-radius: 100%;
+  background-color: white;
+  width: 250px;
+  height: 250px;
+}

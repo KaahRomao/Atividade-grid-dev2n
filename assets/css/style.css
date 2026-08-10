@@ -333,6 +333,7 @@ main {
   gap: 15px;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  position: relative;
 }
 
 .mensagem-enviada {
@@ -344,6 +345,24 @@ main {
 .mensagem-recebida {
   grid-column: 3 / 23;
   background-color: #ffffff;
+}
+.perninha-direita {
+  border-bottom: 10px solid #d8f8d2;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: 0px;
+  right: -9px;
+  rotate: 180deg;
+}
+.perninha-esquerda {
+  border-bottom: 10px solid white;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: 0px;
+  left: -9px;
+  rotate: 180deg;
 }
 
 .horas-mensagens {
