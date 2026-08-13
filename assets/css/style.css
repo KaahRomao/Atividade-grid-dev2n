@@ -272,6 +272,13 @@ main {
   align-content: safe end;
 }
 
+aside {
+  height: 100%;
+  grid-column: 3;
+  grid-row: 2;
+  background-color: #f7f5f2;
+}
+
 .mandar-message {
   grid-column: 1 / 36;
   display: flex;
@@ -317,9 +324,29 @@ main {
   outline: none;
 }
 
-.send {
-  width: 70px;
-  height: 70px;
+.enviar-input {
+  border: none;
+  background-color: #ffffff;
+  margin-right: 10px;
+  border: 100%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.enviar-input:hover {
+  cursor: pointer;
+  background-color: #ebe7e5;
+  border-radius: 100%;
+}
+
+.enviar-input > .send {
+  width: 28px;
+  height: 28px;
+  border: none;
+  outline: none;
 }
 
 .mensagem-enviada,
@@ -371,4 +398,49 @@ main {
   white-space: nowrap;
   margin-bottom: auto;
   align-self: flex-end;
+}
+
+#botao-perfilFoto {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+#botao-perfilFoto > img {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+#botao-perfilFoto > img:hover {
+  background-color: #ebe7e5;
+  cursor: pointer;
+}
+
+.botao-perfilFoto {
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #d0d4da;
+}
+/*  */
+/*  */
+.hidden {
+  display: none;
+}
+
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
+
+.visible {
+  animation: fadeIn 2s ease;
 }
