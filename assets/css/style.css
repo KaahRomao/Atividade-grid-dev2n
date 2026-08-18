@@ -267,11 +267,10 @@ main {
   overflow-y: auto;
   gap: 20px;
   padding-top: 10px;
-  padding-bottom: 100px;
   height: 100%;
   align-content: safe end;
+  position: relative; /* O SEGREDO PRA NÃO VAZAR ESTÁ AQUI! */
 }
-
 aside {
   height: 100%;
   grid-column: 3;
@@ -280,18 +279,14 @@ aside {
 }
 
 .mandar-message {
-  grid-column: 1 / 36;
   display: flex;
   align-items: center;
-  width: 1350px;
+  width: calc(100% - 40px);
   background-color: #ffffff;
   height: 50px;
   border-radius: 50px;
-  align-self: end;
-  margin: 20px;
-  position: absolute;
+  padding: 0 16px;
 }
-
 .mandar-message > img {
   width: 30px;
   height: 30px;
@@ -299,56 +294,65 @@ aside {
 }
 .plus {
   display: flex;
-  width: 80px;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
+}
+
+.plus img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .fundo-falso {
-  grid-column: 1 / 36;
-  width: 1400px;
-  height: 80px;
-  align-self: end;
-  position: absolute;
-  background-image: url(../imgs/whatsapp_bg.png);
-  z-index: 1000;
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 90px; /* Altura suficiente para esconder as mensagens atrás dele */
+  position: sticky;
   bottom: 0;
-}
-
-.mandar-message > input {
-  width: 1230px;
-  height: 30px;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-}
-
-.enviar-input {
-  border: none;
-  background-color: #ffffff;
-  margin-right: 10px;
-  border: 100%;
-  width: 45px;
-  height: 45px;
+  z-index: 1000;
+  background-image: url(../imgs/whatsapp_bg.png); /* Traz de volta o fundo falso! */
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.mandar-message > input {
+  flex: 1;
+  height: 42px;
+  border-radius: 8px; /* Cantos levemente arredondados igual a foto */
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  font-size: 15px;
+  background-color: #ffffff;
+}
 
-.enviar-input:hover {
+.mandar-message > input::placeholder {
+  color: #8696a0;
+}
+
+.enviar-input {
+  border: none;
+  background-color: transparent; /* Remove o fundo branco do botão */
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  background-color: #ebe7e5;
-  border-radius: 100%;
+}
+.enviar-input:hover {
+  background-color: transparent; /* Remove o efeito de hover antigo */
 }
 
 .enviar-input > .send {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border: none;
   outline: none;
 }
-
 .mensagem-enviada,
 .mensagem-recebida {
   border-radius: 5px;
@@ -426,21 +430,89 @@ aside {
   flex-direction: column;
   border-right: 1px solid #d0d4da;
 }
-/*  */
-/*  */
+
 .hidden {
   display: none;
 }
 
-/* @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-} */
-
 .visible {
   animation: fadeIn 2s ease;
+}
+
+/* ---------- Perfil ---------- */
+.botao-perfilFoto {
+  padding: 24px;
+  gap: 20px;
+}
+
+.perfil-header p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.perfil-avatar-wrap {
+  align-self: center;
+}
+
+.perfil-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  background-color: #ececec;
+  border: 1px dashed #c9c9c9;
+}
+
+.perfil-campo label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.perfil-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.perfil-linha img,
+.perfil-telefone img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.perfil-telefone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.perfil-trocar p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.perfil-lista {
+  display: flex;
+  gap: 18px;
+}
+
+.perfil-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.perfil-mini-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  background-color: #ececec;
+  border: 1px dashed #c9c9c9;
 }

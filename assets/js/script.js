@@ -4,10 +4,7 @@ const contatos = {
       id: 1,
       account: "Ricardo da Silva",
       nickname: "Ricky",
-      "created-since": {
-        start: "2015-08-23",
-        end: "null",
-      },
+      "created-since": { start: "2015-08-23", end: "null" },
       gender: "male",
       "profile-image": "",
       number: "11987876567",
@@ -140,16 +137,8 @@ const contatos = {
           image: "26999999967.png",
           gender: "male",
           messages: [
-            {
-              sender: "John Doe",
-              content: "Oi, tudo bem?",
-              time: "11:00",
-            },
-            {
-              sender: "me",
-              content: "Tudo ótimo! E contigo?",
-              time: "11:05",
-            },
+            { sender: "John Doe", content: "Oi, tudo bem?", time: "11:00" },
+            { sender: "me", content: "Tudo ótimo! E contigo?", time: "11:05" },
             {
               sender: "John Doe",
               content:
@@ -224,10 +213,7 @@ const contatos = {
       id: 2,
       account: "Bernardo Xavier Ribeiro",
       nickname: "BeeR",
-      "created-since": {
-        start: "2020-02-13",
-        end: "null",
-      },
+      "created-since": { start: "2020-02-13", end: "null" },
       gender: "male",
       "profile-image": "",
       number: "11966578996",
@@ -365,11 +351,7 @@ const contatos = {
               content: "Oi, tudo bem?",
               time: "11:00",
             },
-            {
-              sender: "me",
-              content: "Tudo ótimo! E contigo?",
-              time: "11:05",
-            },
+            { sender: "me", content: "Tudo ótimo! E contigo?", time: "11:05" },
             {
               sender: "Jonny Devited",
               content:
@@ -444,10 +426,7 @@ const contatos = {
       id: 3,
       account: "Sandy Wilstern",
       nickname: "Sand",
-      "created-since": {
-        start: "2017-05-11",
-        end: "null",
-      },
+      "created-since": { start: "2017-05-11", end: "null" },
       gender: "female",
       "profile-image": "",
       number: "11955577796",
@@ -494,11 +473,7 @@ const contatos = {
               content: "Oi, tudo bem?",
               time: "11:00",
             },
-            {
-              sender: "me",
-              content: "Tudo ótimo! E contigo?",
-              time: "11:05",
-            },
+            { sender: "me", content: "Tudo ótimo! E contigo?", time: "11:05" },
             {
               sender: "Jonny Devited",
               content:
@@ -573,10 +548,7 @@ const contatos = {
       id: 4,
       account: "Jonathan Xavier",
       nickname: "Joe",
-      "created-since": {
-        start: "2023-03-11",
-        end: "null",
-      },
+      "created-since": { start: "2023-03-11", end: "null" },
       gender: "male",
       "profile-image": "",
       number: "1194457796",
@@ -616,27 +588,7 @@ const contatos = {
   ],
 };
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+// ---------- Controle de sections (perfil/settings/chats) ----------
 const elemento = {
   btnFoto: document.querySelector("#botao-perfilFoto"),
   sections: document.querySelectorAll("section, main, header, aside"),
@@ -653,7 +605,6 @@ elemento.chat.addEventListener("click", (e) => {
   displayControler(e.target.id);
 });
 
-// Função de controle de exibição de sections
 function displayControler(id) {
   elemento.sections.forEach((section) => {
     section.classList.add("hidden");
@@ -665,3 +616,161 @@ function displayControler(id) {
     }
   });
 }
+
+// ---------- Estado do perfil/contatos ----------
+let perfilAtivoId = 1;
+let contatoAtivo = null;
+
+const el2 = {
+  suma: document.querySelector(".suma"),
+  perfilItens: document.querySelectorAll(".perfil-item"),
+  headerFoto: document.querySelector("header .foto-nome img"),
+  headerNome: document.querySelector("header .foto-nome h2"),
+  main: document.querySelector("main"),
+  perfilNomeAtivo: document.querySelector("#perfil-nome-ativo"),
+  perfilTelefoneAtivo: document.querySelector("#perfil-telefone-ativo"),
+};
+
+function getPerfilAtivo() {
+  return contatos["whats-users"].find((u) => u.id === perfilAtivoId);
+}
+
+function fotoPerfil(id) {
+  return `https://i.pravatar.cc/150?img=${id}`;
+}
+
+function fotoContato(index) {
+  return `https://i.pravatar.cc/150?img=${(index % 70) + 1}`;
+}
+
+// ---------- Troca de perfil ----------
+el2.perfilItens.forEach((item) => {
+  item.addEventListener("click", () => {
+    perfilAtivoId = Number(item.dataset.id);
+    renderPerfilAtivo();
+    displayControler("chats");
+  });
+});
+
+function renderPerfilAtivo() {
+  const user = getPerfilAtivo();
+
+  // Atualiza a foto do botão no menu lateral
+  const btnNavFoto = document.querySelector("#botao-perfilFoto img");
+  if (btnNavFoto) {
+    btnNavFoto.src = fotoPerfil(user.id);
+  }
+
+  el2.perfilNomeAtivo.textContent = user.account;
+  el2.perfilTelefoneAtivo.textContent = "+55 " + user.number;
+
+  const avatarGrande = document.querySelector(".perfil-avatar");
+  avatarGrande.style.backgroundImage = `url(${fotoPerfil(user.id)})`;
+  avatarGrande.style.backgroundSize = "cover";
+
+  el2.perfilItens.forEach((item) => {
+    const id = Number(item.dataset.id);
+    const mini = item.querySelector(".perfil-mini-avatar");
+    mini.style.backgroundImage = `url(${fotoPerfil(id)})`;
+    mini.style.backgroundSize = "cover";
+  });
+
+  contatoAtivo = null;
+  renderContatos(user.contacts);
+
+  el2.main.innerHTML = "";
+  el2.headerNome.textContent = "Selecione uma conversa";
+  el2.headerFoto.src = "https://i.pravatar.cc/150?img=68";
+}
+// ---------- Lista de contatos do perfil ----------
+function renderContatos(contacts) {
+  el2.suma.innerHTML = "";
+
+  contacts.forEach((contact, index) => {
+    const article = document.createElement("article");
+    article.dataset.index = index;
+
+    const ultima = contact.messages[contact.messages.length - 1];
+
+    article.innerHTML = `
+      <img src="${fotoContato(index)}" alt="" class="foto-perfil">
+      <p class="nome">${contact.name}</p>
+      <p class="horas">${ultima.time}</p>
+      <p class="mensagem">${ultima.content}</p>
+      <div class="pingo">${contact.messages.length}</div>
+    `;
+
+    article.addEventListener("click", () => abrirChat(contact, index));
+    el2.suma.appendChild(article);
+  });
+}
+
+// ---------- Abrir conversa ----------
+function abrirChat(contact, index) {
+  contatoAtivo = contact;
+
+  el2.headerFoto.src = fotoContato(index);
+  el2.headerNome.textContent = contact.name;
+
+  renderMensagens();
+}
+
+// ---------- Mensagens + barra de envio ----------
+function renderMensagens() {
+  el2.main.innerHTML = "";
+
+  contatoAtivo.messages.forEach((msg) => {
+    const div = document.createElement("div");
+    const enviada = msg.sender === "me";
+
+    div.className = enviada ? "mensagem-enviada" : "mensagem-recebida";
+    div.innerHTML = `
+      <div class="${enviada ? "perninha-direita" : "perninha-esquerda"}"></div>
+      <p>${msg.content}</p>
+      <p class="horas-mensagens">${msg.time}</p>
+    `;
+    el2.main.appendChild(div);
+  });
+
+  const fundoFalso = document.createElement("div");
+  fundoFalso.className = "fundo-falso";
+  fundoFalso.innerHTML = `
+    <form class="mandar-message" id="form-enviar">
+      <div class="plus">
+        <img src="./assets/icons/plus.svg" alt="">
+        <img src="./assets/icons/expressions.svg" alt="">
+      </div>
+      <input type="text" placeholder="Digite uma mensagem" id="input-mensagem">
+      <button class="enviar-input"><img src="./assets/icons/send-message.png" alt="" class="send"></button>
+    </form>
+  `;
+  el2.main.appendChild(fundoFalso);
+
+  document.querySelector("#form-enviar").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const input = document.querySelector("#input-mensagem");
+    const texto = input.value.trim();
+    if (!texto || !contatoAtivo) return;
+
+    const agora = new Date();
+    const hora =
+      String(agora.getHours()).padStart(2, "0") +
+      ":" +
+      String(agora.getMinutes()).padStart(2, "0");
+
+    contatoAtivo.messages.push({
+      sender: "me",
+      content: texto,
+      time: hora,
+    });
+
+    input.value = "";
+    renderMensagens();
+  });
+
+  el2.main.scrollTop = el2.main.scrollHeight;
+}
+
+// ---------- Inicialização ----------
+renderPerfilAtivo();
